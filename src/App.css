@@ -1,0 +1,26 @@
+/*Hurricane*/
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Inter:wght@500&display=swap');
+
+
+
+:root{
+    --spotify-green: #1AB26B;
+    --bg-black: #000000;
+    --white: #FFFFFF;
+
+    --light-grey: #D9D9D9;
+    --grey: #494949;
+    --dark-grey: #2F2F2F;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+}
+
+body{   
+    background-color: var(--bg-black);
+}

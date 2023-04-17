@@ -1,0 +1,16 @@
+.getStarted-btn{
+    font-size: 1.2em;
+}
+
+.intro-text{
+    padding: 28px;
+}
+.intro-text p:nth-child(1){
+    font-size: clamp(2.6em, 40px, 80px);
+    text-align: center;
+}
+.intro-text p:nth-child(2){
+    font-size: 3em;
+    text-align: center;
+    transition-delay: 100ms;
+}
