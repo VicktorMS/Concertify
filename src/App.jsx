@@ -1,10 +1,9 @@
-import './App.css'
-import Header from "./components/Header/Header";
+import './App.css';
 
 export default function App() {
   return (
     <main>
-      <Header />
+      Olá
     </main>
   )
 }
