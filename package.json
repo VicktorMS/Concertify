@@ -15,6 +15,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/inter": "^4.5.15",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "react-router-dom": "^6.9.0",
     "src": "^1.1.2"

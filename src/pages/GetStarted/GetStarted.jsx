@@ -48,7 +48,7 @@ export default function GetStarted() {
           Encontre shows de seus artistas
           </Typography>
         </Stack>
-        <Button variant="contained">
+        <Button variant="contained" sx={{marginTop: '30px'}}>
           <Link to="/home">Get Started</Link>
         </Button>
       </Box>

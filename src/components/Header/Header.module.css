@@ -1,0 +1,17 @@
+.headerLogo{
+    font-size: 12px;
+}
+.header, .headerCenter, .headerSearch{
+    display: flex;
+    align-items: center;
+}
+.header{
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.headerCenter{
+    flex: 1;
+    justify-content: center;
+    /* background-color: blue; */
+}
