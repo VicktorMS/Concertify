@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Logo from '/src/components/Logo/Logo';
+import { useNavigate } from "react-router-dom";
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
  const spotifyTheme = createTheme({
@@ -26,6 +28,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 });
 
 export default function GetStarted() {
+  let navigate  = useNavigate();
+
+  function handleClick() {
+      navigate("/");
+  }
+
   return (
     <ThemeProvider theme={spotifyTheme}>
       <Box sx={{ 
@@ -48,6 +56,9 @@ export default function GetStarted() {
           Encontre shows de seus artistas
           </Typography>
         </Stack>
+        {/* <Button onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
+          Get Started
+        </Button> */}
         <Button variant="contained" sx={{marginTop: '30px'}}>
           <Link to="/home">Get Started</Link>
         </Button>
