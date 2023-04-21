@@ -8,11 +8,12 @@ import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-    <BrowserRouter>
+    <App/>
+    {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<GetStarted/>}/>
           <Route path="/home" element={<App/>}/>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
 	</React.StrictMode>
 )

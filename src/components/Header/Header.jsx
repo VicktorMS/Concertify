@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '/src/components/Logo/Logo';
 import styles from './Header.module.css'
-import SearchIcon from '@mui/icons-material/Search';
+import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 function Header() {
@@ -12,10 +12,15 @@ function Header() {
         </div>
         <div className={styles.headerCenter}>
             <div className={styles.headerSearch}>
-                <SearchIcon/>
-                <input type="text" name="" id="" />
+                <form onsubmit="event.preventDefault();" role="search">
+                  <label for="search">Procurar Artista</label>
+                  <input id="search" type="search" placeholder="Procurar..." autofocus required />{/* trocar por material input */}
+                  <button type="submit">
+                    <SearchTwoToneIcon style={{color: 'black'}}/>
+                  </button>    
+                </form>
             </div>
-            <FilterAltIcon/>
+            {/* <FilterAltIcon/> */}
         </div>
     </div>
   )
