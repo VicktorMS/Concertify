@@ -1,8 +1,18 @@
-import React from 'react'
-import styles from './Home.module.css'
-import ArtistCard from '/src/components/ArtistCard/ArtistCard'
+import React, { useState, useEffect } from 'react';
+import styles from './Home.module.css';
+import ArtistCard from '/src/components/ArtistCard/ArtistCard';
+import axios from 'axios';
 
 function Home() {
+    const [topArtistsData, setTopArtistsData] = useState(null);
+
+    useEffect(() => {
+        axios
+            .get('/public/data/topArtists.json')
+            .then(response => setTopArtistsData(response.data))
+            .catch(error => console.log(error))
+    }, []);
+
   return (
     <>
         <div className={styles.homeTopArtist}>
@@ -11,21 +21,12 @@ function Home() {
                 <p>Mostrar todos</p>
             </div>
             <div className={styles.cardsNav}>
-                <ArtistCard
-                    img={"/public/image/artist_default.png"}
-                    name={"Michael Jackson"}
-                    followers={'12.2K'}
-                />
-                <ArtistCard
-                    img={"/public/image/artist_default.png"}
-                    name={"Michael Jackson"}
-                    followers={'12.2K'}
-                />
-                <ArtistCard
-                    img={"/public/image/artist_default.png"}
-                    name={"Michael Jackson"}
-                    followers={'12.2K'}
-                />
+                {console.log(topArtistsData)}
+                { topArtistsData ? topArtistsData.map((artist, index) => (
+                    <ArtistCard 
+                        key={index + 'topArtist'}
+                        data={artist}
+                    /> )): <div>Carregando...</div>}
             </div>
         </div>
         <div className={styles.homeTopConcerts}>
@@ -34,11 +35,7 @@ function Home() {
                 <p>Mostrar todos</p>
             </div>
             <div className={styles.cardsNav}>
-            <ArtistCard
-                    img={"/public/image/artist_default.png"}
-                    name={"Michael Jackson"}
-                    followers={'12.2K'}
-                />
+            
             </div>
         </div>
     </>

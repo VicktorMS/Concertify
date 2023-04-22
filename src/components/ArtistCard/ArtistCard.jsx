@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './ArtistCard.module.css'
 
-function ArtistCard({
-    img, name, followers
-}) {
+function ArtistCard({data}) {
+  const {img, name, followers} = data
   return (
     <div className={styles.ArtistCard}>
         <img src={img} alt="Artist image" />

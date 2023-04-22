@@ -31,7 +31,7 @@ export default function GetStarted() {
   let navigate  = useNavigate();
 
   function handleClick() {
-      navigate("/");
+      navigate("/home");
   }
 
   return (
@@ -56,12 +56,12 @@ export default function GetStarted() {
           Encontre shows de seus artistas
           </Typography>
         </Stack>
-        {/* <Button onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
+        <Button onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
           Get Started
-        </Button> */}
-        <Button variant="contained" sx={{marginTop: '30px'}}>
-          <Link to="/home">Get Started</Link>
         </Button>
+        {/* <Button variant="contained" sx={{marginTop: '30px'}}>
+          <Link to="/home">Get Started</Link>
+        </Button> */}
       </Box>
     </ThemeProvider>
   )
