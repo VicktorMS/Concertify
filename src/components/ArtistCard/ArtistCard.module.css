@@ -1,6 +1,6 @@
 .ArtistCard{
-    width: 200px;
-    height: 250px;
+    min-width: 200px;
+    min-height: 250px;
     padding: 7px;
 
     background: linear-gradient(0deg,rgba(45, 45, 45, 0.812)  0%,rgb(90, 89, 89) 100%);

@@ -28,5 +28,29 @@
        "img":"/public/image/artist_default.png",
        "name":"Madonna",
        "followers":"14.9M"
-    }
+    },
+    {
+        "id":"5",
+        "img":"/public/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     },
+    {
+        "id":"6",
+        "img":"/public/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     },
+    {
+        "id":"7",
+        "img":"/public/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     },
+    {
+        "id":"8",
+        "img":"/public/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     }
  ]
