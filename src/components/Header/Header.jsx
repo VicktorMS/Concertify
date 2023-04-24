@@ -14,7 +14,7 @@ function Header() {
             <div className={styles.headerSearch}>
                 <form onsubmit="event.preventDefault();" role="search">
                   <label htmlFor="search">Procurar Artista</label>
-                  <input id="search" type="search" placeholder="Procurar..." autoFocus required />{/* trocar por material input */}
+                  <input id="search" type="search" placeholder="Procurar Artista" autoFocus required />{/* trocar por material input */}
                   <button>
                     <SearchTwoToneIcon style={{color: 'black'}}/>
                   </button>    
