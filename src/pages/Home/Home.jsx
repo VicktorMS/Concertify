@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
 import ArtistCard from '/src/components/ArtistCard/ArtistCard';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
 function Home() {
-    const [topArtistsData, setTopArtistsData] = useState(null);
-
-    useEffect(() => {
-        axios
-            .get('/public/data/topArtists.json')
-            .then(response => setTopArtistsData(response.data))
-            .catch(error => console.log(error))
-    }, []);
+    const {data, isFetching} = useQuery('artists', async () => {
+        const response = await axios.get('/public/data/topArtists.json')
+        return response.data
+    },{
+        staleTime: 1000 * 60
+    })
+    console.log(data)
 
   return (
     <>
@@ -21,12 +21,12 @@ function Home() {
                 <p>Mostrar todos</p>
             </div>
             <div className={styles.cardsNav}>
-                {console.log(topArtistsData)}
-                { topArtistsData ? topArtistsData.map((artist, index) => (
+                {isFetching && <p>Carregando...</p>}
+                {data?.map((artist, index) => (
                     <ArtistCard 
                         key={index + 'topArtist'}
                         data={artist}
-                    /> )): <div>Carregando...</div>}
+                    /> ))}
             </div>
         </div>
         <div className={styles.homeTopConcerts}>
