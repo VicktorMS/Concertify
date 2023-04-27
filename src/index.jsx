@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import '@fontsource/inter'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GetStarted from './pages/GetStarted/GetStarted'
+import GetStarted from '/src/pages/GetStarted/GetStarted'
 import App from './App'
 
 
