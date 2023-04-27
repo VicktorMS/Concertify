@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 
 function Home() {
     const {data, isFetching} = useQuery('artists', async () => {
-        const response = await axios.get('/public/data/topArtists.json')
+        const response = await axios.get('/data/topArtists.json')
         return response.data
     },{
         staleTime: 1000 * 60
