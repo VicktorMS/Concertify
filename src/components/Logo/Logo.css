@@ -1,10 +1,4 @@
-/* Logo Font - Gotham */
-@font-face {
-    font-family: "Gotham";
-    src: url("../public/fonts/GothamMedium.ttf");
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 .concertify-logo{
     font-family: 'Gotham', sans-serif;

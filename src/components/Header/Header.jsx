@@ -12,7 +12,7 @@ function Header() {
         </div>
         <div className={styles.headerCenter}>
             <div className={styles.headerSearch}>
-                <form onsubmit="event.preventDefault();" role="search">
+                <form role="search">
                   <label htmlFor="search">Procurar Artista</label>
                   <input id="search" type="search" placeholder="Procurar Artista" autoFocus required />{/* trocar por material input */}
                   <button>
