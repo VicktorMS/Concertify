@@ -12,6 +12,8 @@ const CLIENT_ID = 'ca07f27f56a149da8ed278d987a90c29';
 const REDIRECT_URI = 'http://localhost:5173/home';
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 const RESPONSE_TYPE = 'token'
+const SCOPE = 'user-top-read'
+
 
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -61,7 +63,7 @@ export default function GetStarted() {
           Encontre shows de seus artistas
           </Typography>
         </Stack>
-        <Button  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
+        <Button  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
           Get Started
         </Button>
         {/* <Button variant="contained" sx={{marginTop: '30px'}}>

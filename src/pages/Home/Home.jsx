@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
 import ArtistCard from '/src/components/ArtistCard/ArtistCard';
-import axios from 'axios';
-import { useQuery } from 'react-query';
-
 function Home() {
-    const {data, isFetching} = useQuery('artists', async () => {
-        const response = await axios.get('/data/topArtists.json')
-        return response.data
-    },{
-        staleTime: 1000 * 60
-    })
-    // console.log(data)
+
+    const [artists, setArtists] = useState([]);
+
+    useEffect(() => {
+        let token_url = window.location.hash
+        let token_pure = token_url.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
+        window.localStorage.setItem('token',token_pure)
+
+        async function fetchData() {
+
+            const response = await fetch('https://api.spotify.com/v1/me/top/artists', { 
+                method: 'get', 
+                headers: new Headers({
+                    'Authorization': `Bearer ${token_pure}`, 
+                }), 
+            })
+            const result = await response.json();
+            setArtists(result)
+        };  
+
+        fetchData()
+
+    },[])
+
+    console.log(artists)
 
   return (
     <>
@@ -21,10 +36,9 @@ function Home() {
                 <p>Mostrar todos</p>
             </div>
             <div className={styles.cardsNav}>
-                {isFetching && <p>Carregando...</p>}
-                {data?.map((artist, index) => (
+                {artists.items?.map((artist, index) => (
                     <ArtistCard 
-                        key={index + 'topArtist'}
+                        key={index}
                         data={artist}
                     /> ))}
             </div>
