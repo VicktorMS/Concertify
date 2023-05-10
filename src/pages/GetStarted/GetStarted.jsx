@@ -1,13 +1,18 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import styles from './GetStarted.module.css'
-import { Link } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Logo from '/src/components/Logo/Logo';
 import { useNavigate } from "react-router-dom";
+
+
+const CLIENT_ID = 'ca07f27f56a149da8ed278d987a90c29';
+const REDIRECT_URI = 'http://localhost:5173/home';
+const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
+const RESPONSE_TYPE = 'token'
+
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -56,7 +61,7 @@ export default function GetStarted() {
           Encontre shows de seus artistas
           </Typography>
         </Stack>
-        <Button onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
+        <Button  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
           Get Started
         </Button>
         {/* <Button variant="contained" sx={{marginTop: '30px'}}>
