@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './ArtistPage.module.css'
-import { useQueryClient } from 'react-query'
+// import { useQueryClient } from 'react-query'
 import {useParams} from 'react-router-dom'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
@@ -9,23 +9,21 @@ function ArtistPage() {
     const params = useParams()
     const currentArtistID = params['*']
 
-    const queryClient = useQueryClient()
-
-    async function getCurrentArtistDataInCache(){
-      try{
-        const artistsDataInCache = await queryClient.getQueryData('artists');
-        console.log('cache: ', artistsDataInCache )
-        const currentArtistData = artistsDataInCache.find(artistData => artistData.id === currentArtistID) || {};
-        console.log("Artista Atual", currentArtistData)
-        setArtistData(currentArtistData)
-      }catch(error){
-        console.log('Erro ao buscar dados em cache: ', error)
-      }
-    }
+    // async function getCurrentArtistDataInCache(){
+    //   try{
+    //     const artistsDataInCache = await queryClient.getQueryData('artists');
+    //     console.log('cache: ', artistsDataInCache )
+    //     const currentArtistData = artistsDataInCache.find(artistData => artistData.id === currentArtistID) || {};
+    //     console.log("Artista Atual", currentArtistData)
+    //     setArtistData(currentArtistData)
+    //   }catch(error){
+    //     console.log('Erro ao buscar dados em cache: ', error)
+    //   }
+    // }
   
-    useEffect(()=>{
-      getCurrentArtistDataInCache()
-    }, [])
+    // useEffect(()=>{
+    //   getCurrentArtistDataInCache()
+    // }, [])
     
     console.log("Artist", artistData)
 
