@@ -1,20 +1,20 @@
-import './App.css';
-import Header from './components/Header/Header';
-import MainBox from './components/MainBox/MainBox';
-import Home from './pages/Home/Home'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ArtistPage from './pages/ArtistPage/ArtistPage';
+import "./App.css";
+import Header from "./components/Header/Header";
+import MainBox from "./components/MainBox/MainBox";
+import Home from "./pages/Home/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ArtistPage from "./pages/ArtistPage/ArtistPage";
 
 export default function App() {
   return (
     <>
-      <Header/>
+      <Header />
       <MainBox>
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/artist/*' element={<ArtistPage/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/artist/*" element={<ArtistPage />} />
         </Routes>
       </MainBox>
     </>
-  )
+  );
 }

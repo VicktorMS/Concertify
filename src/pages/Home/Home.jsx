@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import styles from "./Home.module.css";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
 function Home() {
@@ -7,6 +7,13 @@ function Home() {
   const secretBandSinTown = "b44ac6574df8cdc7291e1e543bea0a67";
 
   const fetchDataSpotify = async () => {
+    let token_url = window.location.hash;
+    let token_pure = token_url
+      .substring(1)
+      .split("&")
+      .find((elem) => elem.startsWith("access_token"))
+      .split("=")[1];
+    window.localStorage.setItem("token", token_pure);
     try {
       const response = await fetch(
         "https://api.spotify.com/v1/me/top/artists",
@@ -25,14 +32,6 @@ function Home() {
   };
 
   useEffect(() => {
-    let token_url = window.location.hash;
-    let token_pure = token_url
-      .substring(1)
-      .split("&")
-      .find((elem) => elem.startsWith("access_token"))
-      .split("=")[1];
-    window.localStorage.setItem("token", token_pure);
-
     fetchDataSpotify();
   }, []);
 
