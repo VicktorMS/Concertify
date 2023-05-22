@@ -56,12 +56,19 @@ export default function GetStarted() {
           Encontre shows de seus artistas
           </Typography>
         </Stack>
-        <Button onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
-          Get Started
+        <Button 
+          onClick={handleClick} 
+          variant="contained" 
+          color="secondary"
+          sx={{
+            marginTop: '30px',
+            borderRadius: 99,
+            width: 'fit-content',
+            padding: 2,
+            fontWeight: 'bold',
+            }}>
+              Começar 
         </Button>
-        {/* <Button variant="contained" sx={{marginTop: '30px'}}>
-          <Link to="/home">Get Started</Link>
-        </Button> */}
       </Box>
     </ThemeProvider>
   )

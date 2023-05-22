@@ -1,7 +1,7 @@
 /* Logo Font - Gotham */
 @font-face {
     font-family: "Gotham";
-    src: url("../public/fonts/GothamMedium.ttf");
+    src: url("/fonts/GothamMedium.ttf");
     font-weight: normal;
     font-style: normal;
 }

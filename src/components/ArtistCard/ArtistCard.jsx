@@ -10,7 +10,6 @@ function ArtistCard({data}) {
             <p><b>{name}</b></p>
             <p>{followers}</p>
         </div>
- 
     </div>
   )
 }

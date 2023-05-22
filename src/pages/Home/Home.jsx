@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
 import ArtistCard from '/src/components/ArtistCard/ArtistCard';
+import ConcertsHomeCard from '/src/components/ConcertsHomeCard/ConcertsHomeCard';
 import axios from 'axios';
 
 function Home() {
@@ -8,7 +9,7 @@ function Home() {
 
     useEffect(() => {
         axios
-            .get('/public/data/topArtists.json')
+            .get('/data/topArtists.json')
             .then(response => setTopArtistsData(response.data))
             .catch(error => console.log(error))
     }, []);
@@ -18,7 +19,6 @@ function Home() {
         <div className={styles.homeTopArtist}>
             <div className={styles.categoryTitle}>
                 <h2>Artistas em Alta</h2>
-                <p>Mostrar todos</p>
             </div>
             <div className={styles.cardsNav}>
                 {console.log(topArtistsData)}
@@ -32,10 +32,9 @@ function Home() {
         <div className={styles.homeTopConcerts}>
             <div className={styles.categoryTitle}>
                 <h2>Shows em Alta</h2>
-                <p>Mostrar todos</p>
             </div>
             <div className={styles.cardsNav}>
-            
+                <ConcertsHomeCard/>            
             </div>
         </div>
     </>

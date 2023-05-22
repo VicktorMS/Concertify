@@ -1,0 +1,46 @@
+.ConcertsHomeCard{
+    width: 200px;
+    height: 250px;
+    padding: 7px;
+
+    background: linear-gradient(0deg,rgba(54, 53, 53, 0.812)  0%,rgb(51, 50, 50) 100%);
+
+    border-radius: 8px;
+    /* border: 1px solid #ffffff44; */
+    box-shadow: 6px 7px 4px -4px rgba(0,0,0,0.75);
+
+    transition: transform 0.3s ease;
+    will-change: transform;
+    margin: 4px;
+    cursor: pointer;
+
+}
+
+.ConcertsHomeCard:hover{
+    background-color: gray;
+    transform: scale(1.1);
+}
+
+.ConcertsHomeCard > img{
+    width: 185px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 3px 4px 4px -4px rgba(0,0,0,0.75);
+}
+
+.dateHighLight{
+    color: #1AB26B;
+    font-weight: bold;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: 'red';
+    margin-bottom: 5px;
+    margin-top: 5px;
+    /* background-color: blue; */
+}
+
