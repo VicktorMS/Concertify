@@ -7,14 +7,11 @@ import Box from '@mui/material/Box';
 import Logo from '/src/components/Logo/Logo';
 import { useNavigate } from "react-router-dom";
 
-
 const CLIENT_ID = 'ca07f27f56a149da8ed278d987a90c29';
 const REDIRECT_URI = 'http://localhost:5173/home';
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 const RESPONSE_TYPE = 'token'
 const SCOPE = 'user-top-read'
-
-
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -66,9 +63,6 @@ export default function GetStarted() {
         <Button  href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} onClick={handleClick} variant="contained" sx={{marginTop: '30px'}}>
           Get Started
         </Button>
-        {/* <Button variant="contained" sx={{marginTop: '30px'}}>
-          <Link to="/home">Get Started</Link>
-        </Button> */}
       </Box>
     </ThemeProvider>
   )

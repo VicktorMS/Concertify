@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useParams } from "react";
 import styles from "./Home.module.css";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
+
 function Home() {
   const [artists, setArtists] = useState([]);
-
-  const secretBandSinTown = "b44ac6574df8cdc7291e1e543bea0a67";
 
   const fetchDataSpotify = async () => {
     let token_url = window.location.hash;
@@ -35,8 +34,6 @@ function Home() {
     fetchDataSpotify();
   }, []);
 
-  console.log(artists);
-
   return (
     <>
       <div className={styles.homeTopArtist}>
@@ -62,7 +59,3 @@ function Home() {
 }
 
 export default Home;
-
-// curl -X POST "https://accounts.spotify.com/api/token" \
-//      -H "Content-Type: application/x-www-form-urlencoded" \
-//      -d "grant_type=client_credentials&client_id=6fc0b1f2e7a24dcf836d4c6937e746a9&client_secret=d48491bd1a6c4a899d6544c0dcd22e68"
