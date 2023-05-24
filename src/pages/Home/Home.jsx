@@ -17,7 +17,7 @@ function Home({ artistsSearchData }) {
   const trackItems = spotifyMock.tracks.items;
 
   // Create an empty array to store the artist names
-  const artistNames = [];
+  const artistId = [];
 
   // Iterate over each track item
   trackItems.forEach((item) => {
@@ -27,12 +27,12 @@ function Home({ artistsSearchData }) {
     // Iterate over each artist in the artists array
     artists.forEach((artist) => {
       // Get the name of the artist and push it to the artistNames array
-      artistNames.push(artist.name);
+      artistId.push(artist.id);
     });
   });
 
   // Now 'artistNames' array contains the names of each artist in the playlist
-  console.log(artistNames);
+  console.log(artistId);
 
   console.log(spotifyMock);
 
