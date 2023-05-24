@@ -31,10 +31,11 @@ function Home({ artistsSearchData }) {
     });
   });
 
+  const uniqueIds = [...new Set(artistId)];
+
   // Now 'artistNames' array contains the names of each artist in the playlist
   console.log(artistId);
-
-  console.log(spotifyMock);
+  console.log(uniqueIds);
 
   console.log(artistsSearchData);
 
