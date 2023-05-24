@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
+import spotifyMock from "/src/utils/spotifyMock";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
 import ConcertsHomeCard from "/src/components/ConcertsHomeCard/ConcertsHomeCard";
 // import { useFetch } from "../../hooks/useFetchBandsInTown";
@@ -7,6 +8,35 @@ import { fetchSpotifyAccessToken } from "../../utils/fetchSpotifyAccessToken";
 
 function Home({ artistsSearchData }) {
   const [spotifyAccessToken, setAccessToken] = useState(null);
+
+  //CHAT GPT == DEUS
+
+  // Assuming the JSON data is stored in a variable called 'playlistData'
+
+  // Get the 'items' array from the 'tracks' object
+  const trackItems = spotifyMock.tracks.items;
+
+  // Create an empty array to store the artist names
+  const artistNames = [];
+
+  // Iterate over each track item
+  trackItems.forEach((item) => {
+    // Get the artists array for each track
+    const artists = item.track.artists;
+
+    // Iterate over each artist in the artists array
+    artists.forEach((artist) => {
+      // Get the name of the artist and push it to the artistNames array
+      artistNames.push(artist.name);
+    });
+  });
+
+  // Now 'artistNames' array contains the names of each artist in the playlist
+  console.log(artistNames);
+
+  console.log(spotifyMock);
+
+  console.log(artistsSearchData);
 
   useEffect(() => {
     const storedAccessToken = localStorage.getItem("spotifyAccessToken");
