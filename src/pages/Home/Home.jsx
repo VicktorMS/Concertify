@@ -5,50 +5,12 @@ import ConcertsHomeCard from "/src/components/ConcertsHomeCard/ConcertsHomeCard"
 
 import { useFetch } from "../../hooks/useFetch";
 
-import { fetchSpotifyAccessToken } from "/src/services/fetchSpotifyAccessToken";
-import { fetchSpotifyPlaylistData } from "../../services/fetchSpotifyPlaylistData";
 
 function Home({ artistsSearchData }) {
-    
-  const [spotifyAccessToken, setSpotifyAccessToken] = useState(null);
-  const [spotifyExpireTimeAccessToken, setSpotifyExpireTimeAccessToken] = useState(null);
-
-
-  // console.log(artistsSearchData);
-
   
-  useEffect(() => {
-    const storedAccessToken = localStorage.getItem("spotifyAccessToken");
-    const storedExpireTime = localStorage.getItem(
-      "accessTokenSpotifyExpiresIn"
-    );
+  const {data, error, isFetching} = useFetch("https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA", "GET")
 
-    if (storedAccessToken && storedExpireTime > Date.now()) {
-      console.log("Token já existe")
-      console.log("chave em cache", storedAccessToken)
-      setSpotifyAccessToken(storedAccessToken);
-      setSpotifyExpireTimeAccessToken(storedExpireTime);
-      console.log("Chave em Estado", spotifyAccessToken)
-
-
-    } else {
-      // Caso não esteja armazenado, obter um novo AccessToken
-      fetchSpotifyAccessToken().then(({ accessToken, expiresIn }) => {
-        localStorage.setItem("spotifyAccessToken", accessToken);
-        localStorage.setItem(
-          "accessTokenSpotifyExpiresIn",
-          Date.now() + expiresIn * 1000
-        );
-        setSpotifyAccessToken(accessToken);
-        setSpotifyExpireTimeAccessToken(Date.now() + expiresIn * 1000)
-      });
-    }
-
-
-    
-  }, []);
-  
-  
+  console.log(data);
 
   return (
     <>
@@ -57,6 +19,9 @@ function Home({ artistsSearchData }) {
           <h2>Artistas em Alta</h2>
         </div>
         <div className={styles.cardsNav}>
+        {/* <p>{data?.artists}</p> */}
+        <p>{isFetching}</p>
+        <p>{error}</p>
           {/* {console.log(artistsSearchData?.name)} */}
         </div>
       </div>
@@ -82,3 +47,32 @@ export default Home;
 //   ) : (
 //     <div>Carregando...</div>
 //   )} */}
+
+// useEffect(() => {
+//   const storedAccessToken = localStorage.getItem("spotifyAccessToken");
+//   const storedExpireTime = localStorage.getItem(
+//     "accessTokenSpotifyExpiresIn"
+//   );
+
+//   if (storedAccessToken && storedExpireTime > Date.now()) {
+//     console.log("Token já existe")
+//     console.log("chave em cache", storedAccessToken)
+//     setSpotifyAccessToken(storedAccessToken);
+//     setSpotifyExpireTimeAccessToken(storedExpireTime);
+//     console.log("Chave em Estado", spotifyAccessToken)
+//     console.log("Expire em Estado", spotifyExpireTimeAccessToken)
+
+//   } else {
+//     // Caso não esteja armazenado, obter um novo AccessToken
+//     fetchSpotifyAccessToken().then(({ accessToken, expiresIn }) => {
+//       localStorage.setItem("spotifyAccessToken", accessToken);
+//       localStorage.setItem(
+//         "accessTokenSpotifyExpiresIn",
+//         Date.now() + expiresIn * 1000
+//       );
+//       setSpotifyAccessToken(accessToken);
+//       setSpotifyExpireTimeAccessToken(Date.now() + expiresIn * 1000)
+//     });
+//   }
+
+// }, []);
