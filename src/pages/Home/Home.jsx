@@ -1,44 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
-import spotifyMock from "/src/utils/spotifyMock";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
 import ConcertsHomeCard from "/src/components/ConcertsHomeCard/ConcertsHomeCard";
-// import { useFetch } from "../../hooks/useFetchBandsInTown";
-import { fetchSpotifyAccessToken } from "../../utils/fetchSpotifyAccessToken";
+
+import { useFetch } from "../../hooks/useFetch";
+
+import { fetchSpotifyAccessToken } from "/src/services/fetchSpotifyAccessToken";
+import { fetchSpotifyPlaylistData } from "../../services/fetchSpotifyPlaylistData";
 
 function Home({ artistsSearchData }) {
-  const [spotifyAccessToken, setAccessToken] = useState(null);
+    
+  const [spotifyAccessToken, setSpotifyAccessToken] = useState(null);
+  const [spotifyExpireTimeAccessToken, setSpotifyExpireTimeAccessToken] = useState(null);
 
-  //CHAT GPT == DEUS
 
-  // Assuming the JSON data is stored in a variable called 'playlistData'
+  // console.log(artistsSearchData);
 
-  // Get the 'items' array from the 'tracks' object
-  const trackItems = spotifyMock.tracks.items;
-
-  // Create an empty array to store the artist names
-  const artistId = [];
-
-  // Iterate over each track item
-  trackItems.forEach((item) => {
-    // Get the artists array for each track
-    const artists = item.track.artists;
-
-    // Iterate over each artist in the artists array
-    artists.forEach((artist) => {
-      // Get the name of the artist and push it to the artistNames array
-      artistId.push(artist.id);
-    });
-  });
-
-  const uniqueIds = [...new Set(artistId)];
-
-  // Now 'artistNames' array contains the names of each artist in the playlist
-  console.log(artistId);
-  console.log(uniqueIds);
-
-  console.log(artistsSearchData);
-
+  
   useEffect(() => {
     const storedAccessToken = localStorage.getItem("spotifyAccessToken");
     const storedExpireTime = localStorage.getItem(
@@ -46,7 +24,13 @@ function Home({ artistsSearchData }) {
     );
 
     if (storedAccessToken && storedExpireTime > Date.now()) {
-      setAccessToken(storedAccessToken);
+      console.log("Token já existe")
+      console.log("chave em cache", storedAccessToken)
+      setSpotifyAccessToken(storedAccessToken);
+      setSpotifyExpireTimeAccessToken(storedExpireTime);
+      console.log("Chave em Estado", spotifyAccessToken)
+
+
     } else {
       // Caso não esteja armazenado, obter um novo AccessToken
       fetchSpotifyAccessToken().then(({ accessToken, expiresIn }) => {
@@ -55,10 +39,16 @@ function Home({ artistsSearchData }) {
           "accessTokenSpotifyExpiresIn",
           Date.now() + expiresIn * 1000
         );
-        setAccessToken(accessToken);
+        setSpotifyAccessToken(accessToken);
+        setSpotifyExpireTimeAccessToken(Date.now() + expiresIn * 1000)
       });
     }
+
+
+    
   }, []);
+  
+  
 
   return (
     <>
@@ -67,7 +57,7 @@ function Home({ artistsSearchData }) {
           <h2>Artistas em Alta</h2>
         </div>
         <div className={styles.cardsNav}>
-          {console.log(artistsSearchData?.name)}
+          {/* {console.log(artistsSearchData?.name)} */}
         </div>
       </div>
       <div className={styles.homeTopConcerts}>
