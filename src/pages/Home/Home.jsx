@@ -2,37 +2,64 @@ import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
 import ConcertsHomeCard from "/src/components/ConcertsHomeCard/ConcertsHomeCard";
-
 import { useFetch } from "../../hooks/useFetch";
-
+import { filterArtistsFromSpotifyPlaylist } from "/src/utils/filterArtistsFromSpotifyPlaylist.js";
 
 function Home({ artistsSearchData }) {
-  
-  const {data, error, isFetching} = useFetch("https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA", "GET")
+  const [numberOfArtists, setNumberOfArtists] = useState(10);
 
-  console.log(data);
+  const {
+    data: playlistData,
+    error: playlistError,
+    isFetching: isFetchingPlaylist,
+  } = useFetch(
+    "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
+    "GET"
+  );
+
+  function filterArtistsIdsFromPlaylistToString(nIds) {
+    if (playlistData && !playlistError && !isFetchingPlaylist) {
+      const allArtistsIds = filterArtistsFromSpotifyPlaylist(playlistData);
+      const fewArtistsIds = allArtistsIds.slice(0, nIds);
+      return fewArtistsIds.join(",");
+    }
+  }
+
+  const stringOfArtistsIds =
+    filterArtistsIdsFromPlaylistToString(numberOfArtists);
+
+  const {
+    data: artistsData,
+    error: artistsError,
+    isFetching: isFetchingArtists,
+  } = useFetch(
+    `https://api.spotify.com/v1/artists?ids=${stringOfArtistsIds}`,
+    "GET"
+  );
 
   return (
     <>
       <div className={styles.homeTopArtist}>
         <div className={styles.categoryTitle}>
-          <h2>Artistas em Alta</h2>
-        </div>
-        <div className={styles.cardsNav}>
-        {/* <p>{data?.artists}</p> */}
-        <p>{isFetching}</p>
-        <p>{error}</p>
-          {/* {console.log(artistsSearchData?.name)} */}
+          <h2>Artistas do Momento</h2>
+          <div className={styles.cardsNav}>
+            {artistsError && <p>Não foi buscar artistas </p>}
+            {artistsData && artistsData.artists[0] ? (
+                artistsData.artists.map((artist, index) => <ArtistCard data={artist} key={index}/>)
+              ) : (
+                <p>Carregando...</p>
+              )}
+          </div>
         </div>
       </div>
-      <div className={styles.homeTopConcerts}>
+      {/* <div className={styles.homeTopConcerts}>
         <div className={styles.categoryTitle}>
           <h2>Shows em Alta</h2>
         </div>
         <div className={styles.cardsNav}>
           <ConcertsHomeCard />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

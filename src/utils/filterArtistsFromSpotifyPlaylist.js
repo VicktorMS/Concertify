@@ -1,5 +1,5 @@
 
-export function getArtistsFromSpotifyPlaylist(playlistData) {
+export function filterArtistsFromSpotifyPlaylist(playlistData) {
 
       const trackItems = playlistData.tracks.items;
     

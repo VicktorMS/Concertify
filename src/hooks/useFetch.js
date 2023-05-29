@@ -16,8 +16,6 @@ export function useFetch(url, method) {
         console.log("Token não existe");
 
         const resp = await fetchSpotifyAccessToken();
-        console.log("Teste");
-        console.log(resp);
         
         localStorage.setItem("spotifyAccessToken", resp.accessToken);
         localStorage.setItem(
@@ -29,7 +27,6 @@ export function useFetch(url, method) {
         storedExpireTime = localStorage.getItem("accessTokenSpotifyExpiresIn");
       }
 
-      console.log("Token em cache", storedAccessToken);
 
       fetch(url, {
         method,
@@ -42,7 +39,7 @@ export function useFetch(url, method) {
     }
 
     teste();
-  }, []);
+  }, [url]);
 
   return { data, error, isFetching };
 }
