@@ -9,11 +9,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 export default function App() {
   const [userSearchData, setUserSearchData] = useState("Harry Styles");
 
-  const {
-    data: artists,
-    error,
-    isFetching,
-  } = fetchBandsInTownData(`artists/${userSearchData}`);
+  // const {
+  //   data: artists,
+  //   error,
+  //   isFetching,
+  // } = fetchBandsInTownData(`artists/${userSearchData}`);
 
   const handleUserSearchData = (data) => {
     setUserSearchData(data);
@@ -24,7 +24,8 @@ export default function App() {
       <Header userSearchData={handleUserSearchData} />
       <MainBox>
         <Routes>
-          <Route path="/" element={<Home artistsSearchData={artists} />} />
+          <Route path="/" element={<Home artistsSearchData={"Teste"} />} />
+          {/* <Route path="/*" element={<ArtistInfo artistsSearchData={"Teste"} />} /> */}
         </Routes>
       </MainBox>
     </>

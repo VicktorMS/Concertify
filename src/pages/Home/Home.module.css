@@ -1,25 +1,42 @@
-.categoryTitle{
+.homeTopArtist{
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    /* margin-bottom: 10px; */
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
 }
+
+.categoryTitle{
+    margin-bottom: 12px;
+    padding: 0 20px;
+    text-align: center;
+}
+
 .categoryTitle > p{
     color: #BABABA;
+}
+.categoryTitle > h2{
+    font-size: 28px;
 }
 .homeTopConcerts{
     margin-top: 28px;
 }
 
 .cardsNav{
+    padding-top: 8px;
     overflow-x: auto;
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    padding: 14px 6px; 
+    width: 100%;
+    padding-bottom: 10px;
+    justify-content: center;
+    max-height: 80vh;
+
+
 }
 
 ::-webkit-scrollbar {
-    height: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {

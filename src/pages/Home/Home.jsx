@@ -6,7 +6,7 @@ import { useFetch } from "../../hooks/useFetch";
 import { filterArtistsFromSpotifyPlaylist } from "/src/utils/filterArtistsFromSpotifyPlaylist.js";
 
 function Home({ artistsSearchData }) {
-  const [numberOfArtists, setNumberOfArtists] = useState(10);
+  const [numberOfArtists, setNumberOfArtists] = useState(20);
 
   const {
     data: playlistData,
@@ -41,15 +41,20 @@ function Home({ artistsSearchData }) {
     <>
       <div className={styles.homeTopArtist}>
         <div className={styles.categoryTitle}>
-          <h2>Artistas do Momento</h2>
-          <div className={styles.cardsNav}>
-            {artistsError && <p>Não foi buscar artistas </p>}
-            {artistsData && artistsData.artists[0] ? (
-                artistsData.artists.map((artist, index) => <ArtistCard data={artist} key={index}/>)
-              ) : (
-                <p>Carregando...</p>
-              )}
-          </div>
+          <h2 >
+            Descubra novas experiencias Incriveis
+          </h2>
+          <p>Artistas do momento</p>
+        </div>
+        <div className={styles.cardsNav}>
+          {artistsError && <p>Não foi buscar artistas </p>}
+          {artistsData && artistsData.artists[0] ? (
+            artistsData.artists.map((artist, index) => (
+              <ArtistCard data={artist} key={index} />
+            ))
+          ) : (
+            <p>Carregando...</p>
+          )}
         </div>
       </div>
       {/* <div className={styles.homeTopConcerts}>
