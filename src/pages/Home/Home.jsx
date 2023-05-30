@@ -4,23 +4,26 @@ import ArtistCard from "/src/components/ArtistCard/ArtistCard";
 import ConcertsHomeCard from "/src/components/ConcertsHomeCard/ConcertsHomeCard";
 import { useFetch } from "../../hooks/useFetch";
 import { filterArtistsFromSpotifyPlaylist } from "/src/utils/filterArtistsFromSpotifyPlaylist.js";
+import LoadingArtistCard from "../../components/LoadingArtistCard/LoadingArtistCard";
 
 function Home({ artistsSearchData }) {
   const [numberOfArtists, setNumberOfArtists] = useState(20);
+
+  const playlistId = "37i9dQZEVXbMDoHDwVN2tF"
 
   const {
     data: playlistData,
     error: playlistError,
     isFetching: isFetchingPlaylist,
   } = useFetch(
-    "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
+    `https://api.spotify.com/v1/playlists/${playlistId}`,
     "GET"
   );
 
-  function filterArtistsIdsFromPlaylistToString(nIds) {
+  function filterArtistsIdsFromPlaylistToString(ids) {
     if (playlistData && !playlistError && !isFetchingPlaylist) {
       const allArtistsIds = filterArtistsFromSpotifyPlaylist(playlistData);
-      const fewArtistsIds = allArtistsIds.slice(0, nIds);
+      const fewArtistsIds = allArtistsIds.slice(0, ids);
       return fewArtistsIds.join(",");
     }
   }
@@ -47,9 +50,10 @@ function Home({ artistsSearchData }) {
           <p>Artistas do momento</p>
         </div>
         <div className={styles.cardsNav}>
+          <LoadingArtistCard/>
           {artistsError && <p>Não foi buscar artistas </p>}
-          {artistsData && artistsData.artists[0] ? (
-            artistsData.artists.map((artist, index) => (
+          {artistsData && artistsData?.artists[0] ? (
+            artistsData?.artists.map((artist, index) => (
               <ArtistCard data={artist} key={index} />
             ))
           ) : (

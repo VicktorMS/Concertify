@@ -40,8 +40,8 @@ function Header({ userSearchData }) {
             </button>
           </form>
         </div>
-        {/* <FilterAltIcon/> */}
       </div>
+     
     </div>
   );
 }

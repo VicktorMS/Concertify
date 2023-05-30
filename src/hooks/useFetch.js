@@ -10,50 +10,34 @@ export function useFetch(url, method) {
   let storedAccessToken = localStorage.getItem("spotifyAccessToken");
   let storedExpireTime = localStorage.getItem("accessTokenSpotifyExpiresIn");
 
-  useEffect(() => {
-    async function teste() {
-      if (!storedAccessToken || storedExpireTime <= Date.now()) {
-        console.log("Token não existe");
+  async function teste() {
+    if (!storedAccessToken || storedExpireTime <= Date.now()) {
+      const resp = await fetchSpotifyAccessToken();
+      
+      localStorage.setItem("spotifyAccessToken", resp.accessToken);
+      localStorage.setItem(
+        "accessTokenSpotifyExpiresIn",
+        Date.now() + resp.expiresIn * 1000
+      );
 
-        const resp = await fetchSpotifyAccessToken();
-        
-        localStorage.setItem("spotifyAccessToken", resp.accessToken);
-        localStorage.setItem(
-          "accessTokenSpotifyExpiresIn",
-          Date.now() + resp.expiresIn * 1000
-        );
-
-        storedAccessToken = localStorage.getItem("spotifyAccessToken");
-        storedExpireTime = localStorage.getItem("accessTokenSpotifyExpiresIn");
-      }
-
-
-      fetch(url, {
-        method,
-        headers: { Authorization: "Bearer " + storedAccessToken },
-      })
-        .then((response) => response.json())
-        .then((data) => setData(data))
-        .catch((error) => setError(error))
-        .finally(() => setIsFetching(false));
+      storedAccessToken = localStorage.getItem("spotifyAccessToken");
+      storedExpireTime = localStorage.getItem("accessTokenSpotifyExpiresIn");
     }
 
+
+    fetch(url, {
+      method,
+      headers: { Authorization: "Bearer " + storedAccessToken },
+    })
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => setError(error))
+      .finally(() => setIsFetching(false));
+  }
+
+  useEffect(() => {
     teste();
   }, [url]);
 
   return { data, error, isFetching };
 }
-
-// .then(({ accessToken, expiresIn }) => {
-//   localStorage.setItem("spotifyAccessToken", accessToken);
-//   localStorage.setItem(
-//     "accessTokenSpotifyExpiresIn",
-//     Date.now() + expiresIn * 1000
-//   );
-
-//   storedAccessToken = localStorage.getItem("spotifyAccessToken");
-//   storedExpireTime = localStorage.getItem(
-//     "accessTokenSpotifyExpiresIn"
-//   );
-
-//   });

@@ -1,4 +1,4 @@
-.ArtistCard{
+.LoadingCard{
     min-width: 210px;
     min-height: 260px;
     padding: 7px;
@@ -7,7 +7,7 @@
 
     border-radius: 8px;
     /* border: 1px solid #ffffff44; */
-    box-shadow: 6px 7px 4px -4px rgba(0,0,0,0.75);
+    /* box-shadow: 6px 7px 4px -4px rgba(0,0,0,0.75); */
 
     transition: transform 0.3s ease;
     will-change: transform;
@@ -16,23 +16,9 @@
 
 }
 
-.ArtistCard:hover{
-    background-color: gray;
-    transform: scale(1.1);
-}
 
-.ArtistCard > img{
-    width: 200px;
-    height: 185px;
-    border-radius: 5px;
-    resize: horizontal;
-    box-shadow: 3px 4px 4px -4px rgba(0,0,0,0.75);
-}
 
 .info{
- 
-    
     margin-bottom: 5px;
     margin-top: 5px;
-    /* background-color: blue; */
 }
