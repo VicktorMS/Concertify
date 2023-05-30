@@ -5,10 +5,10 @@ import Skeleton from '@mui/material/Skeleton';
 function LoadingArtistCard() {
   return (
     <div className={styles.LoadingCard}>
-      <Skeleton variant="rectangular" animation="wave" width={210} height={180} />
+      <Skeleton variant="rectangular" animation="wave" width={200} height={185} />
+        <Skeleton variant="text" animation="wave" sx={{fontSize: '1.5rem' }} />
+        <Skeleton variant="text"animation="wave" sx={{ fontSize: '2rem', width: "30%" }} />
       <div className={styles.info}>
-        <Skeleton variant="text" animation="wave" sx={{ fontSize: '1.5rem' }} />
-        <Skeleton variant="text"animation="wave" sx={{ fontSize: '3rem' }} />
       </div>
     </div>
   );

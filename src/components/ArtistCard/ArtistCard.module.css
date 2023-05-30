@@ -1,9 +1,9 @@
 .ArtistCard{
     min-width: 210px;
-    min-height: 260px;
+    height: 260px;
     padding: 7px;
 
-    background: linear-gradient(0deg,rgba(45, 45, 45, 0.812)  0%,rgb(90, 89, 89) 100%);
+    background: linear-gradient(0deg,rgba(25, 25, 25, 0.812)  0%,rgb(66, 66, 66) 100%);
 
     border-radius: 8px;
     /* border: 1px solid #ffffff44; */
@@ -13,6 +13,10 @@
     will-change: transform;
     margin: 4px;
     cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 
 }
 

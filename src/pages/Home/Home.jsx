@@ -9,16 +9,22 @@ import LoadingArtistCard from "../../components/LoadingArtistCard/LoadingArtistC
 function Home({ artistsSearchData }) {
   const [numberOfArtists, setNumberOfArtists] = useState(20);
 
-  const playlistId = "37i9dQZEVXbMDoHDwVN2tF"
+  const playlistId = "37i9dQZEVXbMDoHDwVN2tF";
+  
+  const renderLoadingCards = () => {
+    const loadingCards = [];
 
+    for (let i = 0; i < 20; i++) {
+      loadingCards.push(<LoadingArtistCard key={i} />);
+    }
+
+    return loadingCards;
+  };
   const {
     data: playlistData,
     error: playlistError,
     isFetching: isFetchingPlaylist,
-  } = useFetch(
-    `https://api.spotify.com/v1/playlists/${playlistId}`,
-    "GET"
-  );
+  } = useFetch(`https://api.spotify.com/v1/playlists/${playlistId}`, "GET");
 
   function filterArtistsIdsFromPlaylistToString(ids) {
     if (playlistData && !playlistError && !isFetchingPlaylist) {
@@ -30,6 +36,7 @@ function Home({ artistsSearchData }) {
 
   const stringOfArtistsIds =
     filterArtistsIdsFromPlaylistToString(numberOfArtists);
+
 
   const {
     data: artistsData,
@@ -44,31 +51,18 @@ function Home({ artistsSearchData }) {
     <>
       <div className={styles.homeTopArtist}>
         <div className={styles.categoryTitle}>
-          <h2 >
-            Descubra novas experiencias Incriveis
-          </h2>
+          <h2>Descubra novas experiencias Incriveis</h2>
           <p>Artistas do momento</p>
         </div>
         <div className={styles.cardsNav}>
-          <LoadingArtistCard/>
           {artistsError && <p>Não foi buscar artistas </p>}
-          {artistsData && artistsData?.artists[0] ? (
-            artistsData?.artists.map((artist, index) => (
-              <ArtistCard data={artist} key={index} />
-            ))
-          ) : (
-            <p>Carregando...</p>
-          )}
+          {artistsData && artistsData?.artists[0]
+            ? artistsData?.artists.map((artist, index) => (
+                <ArtistCard data={artist} key={index} />
+              ))
+            : <>{renderLoadingCards()}</>}
         </div>
       </div>
-      {/* <div className={styles.homeTopConcerts}>
-        <div className={styles.categoryTitle}>
-          <h2>Shows em Alta</h2>
-        </div>
-        <div className={styles.cardsNav}>
-          <ConcertsHomeCard />
-        </div>
-      </div> */}
     </>
   );
 }
