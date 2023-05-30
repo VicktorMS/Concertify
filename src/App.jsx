@@ -2,18 +2,12 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import MainBox from "./components/MainBox/MainBox";
-import { fetchBandsInTownData } from "/src/services/fetchBandsInTownData.js";
 import Home from "./pages/Home/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ArtistDetails from "/src/pages/ArtistDetails/ArtistDetails";
 
 export default function App() {
   const [userSearchData, setUserSearchData] = useState("Harry Styles");
-
-  // const {
-  //   data: artists,
-  //   error,
-  //   isFetching,
-  // } = fetchBandsInTownData(`artists/${userSearchData}`);
 
   const handleUserSearchData = (data) => {
     setUserSearchData(data);
@@ -25,7 +19,7 @@ export default function App() {
       <MainBox>
         <Routes>
           <Route path="/" element={<Home artistsSearchData={"Teste"} />} />
-          {/* <Route path="/*" element={<ArtistInfo artistsSearchData={"Teste"} />} /> */}
+          <Route path="/*" element={<ArtistDetails />} />
         </Routes>
       </MainBox>
     </>

@@ -1,0 +1,27 @@
+.artistPage{
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+    height: 100%;
+
+}
+
+.artistContainer{
+    /* background-color: #ea0a0a; */
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.popularity{
+    display: flex;
+    gap: 6px;
+    align-items: center ;
+}
+.concertsContainer{
+    /* background-color: blue; */
+}
