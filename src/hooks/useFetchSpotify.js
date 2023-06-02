@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { fetchSpotifyAccessToken } from "/src/services/fetchSpotifyAccessToken";
 
-export function useFetch(url, method) {
+export function useFetchSpotify(url, method) {
   const [data, setData] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ export function useFetch(url, method) {
   let storedAccessToken = localStorage.getItem("spotifyAccessToken");
   let storedExpireTime = localStorage.getItem("accessTokenSpotifyExpiresIn");
 
-  async function teste() {
+  async function fetchData() {
     if (!storedAccessToken || storedExpireTime <= Date.now()) {
       const resp = await fetchSpotifyAccessToken();
       
@@ -36,7 +36,7 @@ export function useFetch(url, method) {
   }
 
   useEffect(() => {
-    teste();
+    fetchData();
   }, [url]);
 
   return { data, error, isFetching };

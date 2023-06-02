@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
-import { useFetch } from "../../hooks/useFetch";
-import { arrayToString, filterArtistsFromSpotifyPlaylist } from "/src/utils/utils";
-import LoadingArtistCard from "../../components/LoadingArtistCard/LoadingArtistCard";
+import { useFetchSpotify } from "../../hooks/useFetchSpotify";
+import {
+  arrayToString,
+  filterArtistsFromSpotifyPlaylist,
+} from "/src/utils/utils";
+import GenerateCardsLoading from "../../components/GenerateCardsLoading/GenerateCardsLoading";
 
 function Home({ artistsSearchData }) {
   const [numberOfArtists, setNumberOfArtists] = useState(20);
@@ -16,12 +19,18 @@ function Home({ artistsSearchData }) {
     data: playlistData,
     error: playlistError,
     isFetching: isFetchingPlaylist,
-  } = useFetch(`https://api.spotify.com/v1/playlists/${playlistId}`, "GET");
+  } = useFetchSpotify(
+    `https://api.spotify.com/v1/playlists/${playlistId}`,
+    "GET"
+  );
 
-  //Transforma a requisição da Playlist em uma string com ids dos artistas 
-  let stringOfArtistsIds
+  //Transforma a requisição da Playlist em uma string com ids dos artistas
+  let stringOfArtistsIds;
   if (playlistData && !playlistError && !isFetchingPlaylist) {
-    stringOfArtistsIds = arrayToString(filterArtistsFromSpotifyPlaylist(playlistData) ,numberOfArtists);
+    stringOfArtistsIds = arrayToString(
+      filterArtistsFromSpotifyPlaylist(playlistData),
+      numberOfArtists
+    );
   }
 
   //Requisição dos artistas
@@ -29,37 +38,28 @@ function Home({ artistsSearchData }) {
     data: artistsData,
     error: artistsError,
     isFetching: isFetchingArtists,
-  } = useFetch(
+  } = useFetchSpotify(
     `https://api.spotify.com/v1/artists?ids=${stringOfArtistsIds}`,
     "GET"
   );
 
-  const renderLoadingCards = () => {
-    const loadingCards = [];
-    for (let i = 0; i < 20; i++) {
-      loadingCards.push(<LoadingArtistCard key={i} />);
-    }
-    return loadingCards;
-  };
-  
-
   return (
-    <>
-      <div className={styles.homeTopArtist}>
-        <div className={styles.categoryTitle}>
-          <h2>Descubra novas experiencias Incriveis</h2>
-          <p>Artistas do momento</p>
-        </div>
-        <div className={styles.cardsNav}>
-          {artistsError && <p>Não foi buscar artistas </p>}
-          {artistsData && artistsData?.artists[0]
-            ? artistsData?.artists.map((artist, index) => (
-                <ArtistCard data={artist} key={index} />
-              ))
-            : <>{renderLoadingCards()}</>}
-        </div>
+    <div className={styles.homeTopArtist}>
+      <div className={styles.categoryTitle}>
+        <h2>Descubra novas experiencias Incríveis</h2>
+        <p>Artistas do momento</p>
       </div>
-    </>
+      <div className={styles.cardsNav}>
+        {artistsError && <p>Não possível foi buscar artistas </p>}
+        {artistsData && artistsData?.artists[0] ? (
+          artistsData?.artists?.map((artist, index) => (
+            <ArtistCard data={artist} key={index} />
+          ))
+        ) : (
+          <GenerateCardsLoading numberOfCards={numberOfArtists} />
+        )}
+      </div>
+    </div>
   );
 }
 

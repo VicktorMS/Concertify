@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./LoadingArtistCard.module.css";
+import styles from "./GenerateCardsLoading.module.css";
 import Skeleton from '@mui/material/Skeleton';
 
 function LoadingArtistCard() {
@@ -14,4 +14,12 @@ function LoadingArtistCard() {
   );
 }
 
-export default LoadingArtistCard;
+function GenerateCardsLoading({ numberOfCards }) {
+  const loadingCards = Array.from({ length: numberOfCards }, (_, index) => (
+    <LoadingArtistCard key={index} />
+  ));
+
+  return <>{loadingCards}</>;
+}
+
+export default GenerateCardsLoading;
