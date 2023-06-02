@@ -1,43 +1,30 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import ArtistCard from "/src/components/ArtistCard/ArtistCard";
-import ConcertsHomeCard from "/src/components/ConcertsHomeCard/ConcertsHomeCard";
 import { useFetch } from "../../hooks/useFetch";
-import { filterArtistsFromSpotifyPlaylist } from "/src/utils/filterArtistsFromSpotifyPlaylist.js";
+import { arrayToString, filterArtistsFromSpotifyPlaylist } from "/src/utils/utils";
 import LoadingArtistCard from "../../components/LoadingArtistCard/LoadingArtistCard";
 
 function Home({ artistsSearchData }) {
   const [numberOfArtists, setNumberOfArtists] = useState(20);
 
+  //Id da playlist com Top Artistas
   const playlistId = "37i9dQZEVXbMDoHDwVN2tF";
-  
-  const renderLoadingCards = () => {
-    const loadingCards = [];
 
-    for (let i = 0; i < 20; i++) {
-      loadingCards.push(<LoadingArtistCard key={i} />);
-    }
-
-    return loadingCards;
-  };
+  //Requisição da Playlist de top 50 artistas
   const {
     data: playlistData,
     error: playlistError,
     isFetching: isFetchingPlaylist,
   } = useFetch(`https://api.spotify.com/v1/playlists/${playlistId}`, "GET");
 
-  function filterArtistsIdsFromPlaylistToString(ids) {
-    if (playlistData && !playlistError && !isFetchingPlaylist) {
-      const allArtistsIds = filterArtistsFromSpotifyPlaylist(playlistData);
-      const fewArtistsIds = allArtistsIds.slice(0, ids);
-      return fewArtistsIds.join(",");
-    }
+  //Transforma a requisição da Playlist em uma string com ids dos artistas 
+  let stringOfArtistsIds
+  if (playlistData && !playlistError && !isFetchingPlaylist) {
+    stringOfArtistsIds = arrayToString(filterArtistsFromSpotifyPlaylist(playlistData) ,numberOfArtists);
   }
 
-  const stringOfArtistsIds =
-    filterArtistsIdsFromPlaylistToString(numberOfArtists);
-
-
+  //Requisição dos artistas
   const {
     data: artistsData,
     error: artistsError,
@@ -46,6 +33,15 @@ function Home({ artistsSearchData }) {
     `https://api.spotify.com/v1/artists?ids=${stringOfArtistsIds}`,
     "GET"
   );
+
+  const renderLoadingCards = () => {
+    const loadingCards = [];
+    for (let i = 0; i < 20; i++) {
+      loadingCards.push(<LoadingArtistCard key={i} />);
+    }
+    return loadingCards;
+  };
+  
 
   return (
     <>
@@ -68,41 +64,3 @@ function Home({ artistsSearchData }) {
 }
 
 export default Home;
-
-//   {/* {console.log(topArtistsData)} */}
-//   {/* {topArtistsData ? (
-//     topArtistsData.map((artist, index) => (
-//       <ArtistCard key={index + "topArtist"} data={artist} />
-//     ))
-//   ) : (
-//     <div>Carregando...</div>
-//   )} */}
-
-// useEffect(() => {
-//   const storedAccessToken = localStorage.getItem("spotifyAccessToken");
-//   const storedExpireTime = localStorage.getItem(
-//     "accessTokenSpotifyExpiresIn"
-//   );
-
-//   if (storedAccessToken && storedExpireTime > Date.now()) {
-//     console.log("Token já existe")
-//     console.log("chave em cache", storedAccessToken)
-//     setSpotifyAccessToken(storedAccessToken);
-//     setSpotifyExpireTimeAccessToken(storedExpireTime);
-//     console.log("Chave em Estado", spotifyAccessToken)
-//     console.log("Expire em Estado", spotifyExpireTimeAccessToken)
-
-//   } else {
-//     // Caso não esteja armazenado, obter um novo AccessToken
-//     fetchSpotifyAccessToken().then(({ accessToken, expiresIn }) => {
-//       localStorage.setItem("spotifyAccessToken", accessToken);
-//       localStorage.setItem(
-//         "accessTokenSpotifyExpiresIn",
-//         Date.now() + expiresIn * 1000
-//       );
-//       setSpotifyAccessToken(accessToken);
-//       setSpotifyExpireTimeAccessToken(Date.now() + expiresIn * 1000)
-//     });
-//   }
-
-// }, []);
