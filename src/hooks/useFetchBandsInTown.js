@@ -8,8 +8,6 @@ export function useFetchBandsInTown(url) {
   const baseUrl = "https://rest.bandsintown.com/";
   const secretBandsInTown = "?app_id=b44ac6574df8cdc7291e1e543bea0a67";
 
-  console.warn(`${baseUrl}${url}${secretBandsInTown}`)
-
   useEffect(() => {
     fetch(`${baseUrl}${url}${secretBandsInTown}`)
       .then((response) => response.json())

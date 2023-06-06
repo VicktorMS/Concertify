@@ -1,27 +1,33 @@
 .artistPage{
-    display: grid;
-    grid-template-columns: 35% 1fr;
-    /* grid-template-rows: 1fr 1fr; */
+    display: flex;
     height: 100%;
-
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.artistContainer{
-    /* background-color: #ea0a0a; */
-    height: 70%;
+.concertsContainer{
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     gap: 15px;
-}
+    padding: 15px;
 
+    background: linear-gradient(0deg,rgba(25, 25, 25, 0.812)  0%,rgb(66, 66, 66) 100%);
+    border-radius: 8px;
+    box-shadow: 6px 7px 4px -4px rgba(0,0,0,0.75);
+
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    padding: 10px;
+}
 
 .popularity{
     display: flex;
     gap: 6px;
     align-items: center ;
-}
-.concertsContainer{
-    /* background-color: blue; */
 }
