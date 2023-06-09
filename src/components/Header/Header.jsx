@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "/src/components/Logo/Logo";
 import styles from "./Header.module.css";
 import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
+import FAQButton from "/src/components/FAQButton/FAQButton";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 function Header({ userSearchData }) {
@@ -41,7 +42,7 @@ function Header({ userSearchData }) {
           </form>
         </div>
       </div>
-     
+      <FAQButton/>
     </div>
   );
 }
