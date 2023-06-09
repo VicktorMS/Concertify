@@ -12,6 +12,7 @@ function ArtistDetails() {
   const params = useParams();
   const paramsToArray = params["*"].split("/");
 
+  // Requisição Spotify da informação do artista com o parâmetro
   const {
     data: artistData,
     error: artistError,
@@ -21,13 +22,14 @@ function ArtistDetails() {
     "GET"
   );
 
+  // Requisição dos shows do artista com o parâmetro nome
   const {
     data: concertsData,
     error: concertsError,
     isFetching: isFetchingConcerts,
   } = useFetchBandsInTown(`artists/${paramsToArray[1]}/events`);
 
-  console.log("concerts", !isFetchingConcerts && concertsData)
+  console.log("concerts", !isFetchingConcerts && concertsData.length);
 
   return (
     <div className={styles.artistPage}>
@@ -40,13 +42,29 @@ function ArtistDetails() {
       <div className={styles.concertsContainer}>
         <h3>Principais Shows</h3>
         <ul>
-          {isFetchingConcerts ? (
-            <p>Carregando...</p>
-          ) : (
-            concertsData.map((concert, index) => (
-              <ConcertCard key={index} concertData={concert} />
-            ))
-          )}
+          {(() => {
+            if (concertsError) return <p>Deu erro</p>;
+
+            else if (isFetchingArtist) return <p>Carregando...</p>;
+            
+            else if (!isFetchingConcerts && !concertsError) {
+
+              //API do BandsInTown manda a mensagem de erro por JSON
+              if (concertsData && concertsData.errorMessage)
+                return <p>{concertsData.errorMessage}</p>;
+
+              else {
+
+                if (concertsData.length === 0)
+                  return <p>Esse artista não está fazendo shows</p>;
+
+                else
+                  return concertsData?.map((concert, index) => (
+                    <ConcertCard key={index} concertData={concert} />
+                  ));
+              }
+            }
+          })()}
         </ul>
       </div>
     </div>
@@ -54,3 +72,11 @@ function ArtistDetails() {
 }
 
 export default ArtistDetails;
+
+// {isFetchingConcerts ? (
+//   <p>Carregando...</p>
+// ) : (
+//   concertsData.map((concert, index) => (
+//     <ConcertCard key={index} concertData={concert} />
+//   ))
+// )}

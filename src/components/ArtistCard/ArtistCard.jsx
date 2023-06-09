@@ -21,3 +21,4 @@ function ArtistCard({ data }) {
 }
 
 export default ArtistCard;
+

@@ -2,7 +2,9 @@
 .artistContainer{
     height: fit-content;
     display: flex;
-    width: 350px;
+    width: 100%;
+    min-width: 150px;
+    max-width: 270px;
     flex-direction: column;
     gap: 15px;
 

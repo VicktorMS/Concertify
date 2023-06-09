@@ -9,7 +9,7 @@ import {
 import GenerateCardsLoading from "../../components/GenerateCardsLoading/GenerateCardsLoading";
 
 function Home({ artistsSearchData }) {
-  const [numberOfArtists, setNumberOfArtists] = useState(20);
+  const [numberOfArtists, setNumberOfArtists] = useState(50);
 
   //Id da playlist com Top Artistas
   const playlistId = "37i9dQZEVXbMDoHDwVN2tF";

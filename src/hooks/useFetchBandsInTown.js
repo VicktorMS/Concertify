@@ -6,6 +6,8 @@ export function useFetchBandsInTown(url) {
   const [error, setError] = useState(null);
 
   const baseUrl = "https://rest.bandsintown.com/";
+  
+  // Isso não deveria estar aqui
   const secretBandsInTown = "?app_id=b44ac6574df8cdc7291e1e543bea0a67";
 
   useEffect(() => {

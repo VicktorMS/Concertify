@@ -2,7 +2,7 @@
     display: flex;
     height: 100%;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -12,6 +12,7 @@
     flex-direction: column;
     gap: 15px;
     padding: 15px;
+    min-width: 400px;
 
     background: linear-gradient(0deg,rgba(25, 25, 25, 0.812)  0%,rgb(66, 66, 66) 100%);
     border-radius: 8px;
@@ -30,4 +31,11 @@ ul{
     display: flex;
     gap: 6px;
     align-items: center ;
+}
+
+@media screen and (max-width: 610px) {
+    .artistPage {
+        padding: 10px;
+        flex-wrap: wrap;
+    }
 }

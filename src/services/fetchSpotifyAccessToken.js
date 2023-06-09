@@ -1,4 +1,7 @@
 export function fetchSpotifyAccessToken() {
+  ///Faz a requisição do Access Token do Spotify
+
+  // Isso não deveria estar aqui
     const clientId = "6fc0b1f2e7a24dcf836d4c6937e746a9";
     const clientSecret = "d48491bd1a6c4a899d6544c0dcd22e68";
   
