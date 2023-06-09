@@ -46,6 +46,7 @@ function Home({ artistsSearchData }) {
   return (
     <div className={styles.homeTopArtist}>
       <div className={styles.categoryTitle}>
+        {artistsSearchData}
         <h2>Descubra novas experiencias Incríveis</h2>
         <p>Artistas do momento</p>
       </div>

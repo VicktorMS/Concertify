@@ -18,7 +18,7 @@ export default function App() {
       <Header userSearchData={handleUserSearchData} />
       <MainBox>
         <Routes>
-          <Route path="/" element={<Home artistsSearchData={"Teste"} />} />
+          <Route path="/" element={<Home artistsSearchData={userSearchData} />} />
           <Route path="/*" element={<ArtistDetails />} />
         </Routes>
       </MainBox>
