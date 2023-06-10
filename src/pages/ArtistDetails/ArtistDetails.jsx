@@ -37,20 +37,15 @@ function ArtistDetails( { artistsSearchData } ) {
         <ul>
           {(() => {
             if (concertsError) return <p>Deu erro</p>;
-
-            else if (isFetchingArtist) return <p>Carregando...</p>;
+            else if (isFetchingConcerts) return <p>Carregando...</p>;
             
-            else if (!isFetchingArtist && !artistError) {
+            else if (!isFetchingConcerts && !artistError) {
 
-              //API do BandsInTown manda a mensagem de erro por JSON
               if (concertsData && concertsData.errorMessage)
                 return <p>{concertsData.errorMessage}</p>;
-
               else {
-
-                if (concertsData.length == 0)
+                if (concertsData?.length == 0)
                   return <p>Esse artista não está fazendo shows</p>;
-
                 else
                   return concertsData?.map((concert, index) => (
                     <ConcertCard key={index} concertData={concert} />
