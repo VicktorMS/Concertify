@@ -16,7 +16,7 @@ export function useFetchBandsInTown(url) {
       .then((data) => setData(data))
       .catch((error) => setError(error))
       .finally(() => setIsFetching(false));
-  }, []);
+  }, [url]);
 
   return { data, error, isFetching };
 }

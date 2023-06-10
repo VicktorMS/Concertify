@@ -8,7 +8,7 @@ import {
 } from "/src/utils/utils";
 import GenerateCardsLoading from "../../components/GenerateCardsLoading/GenerateCardsLoading";
 
-function Home({ artistsSearchData }) {
+function Home() {
   const [numberOfArtists, setNumberOfArtists] = useState(50);
 
   //Id da playlist com Top Artistas
@@ -46,7 +46,6 @@ function Home({ artistsSearchData }) {
   return (
     <div className={styles.homeTopArtist}>
       <div className={styles.categoryTitle}>
-        {artistsSearchData}
         <h2>Descubra novas experiencias Incríveis</h2>
         <p>Artistas do momento</p>
       </div>

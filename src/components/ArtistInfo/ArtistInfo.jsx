@@ -6,23 +6,19 @@ import abbreviate from "number-abbreviate";
 function ArtistInfo({ artistData }) {
   const { 
     name, 
-    images, 
-    popularity, 
-    followers,
-    genres,
-    external_urls
+    image_url, 
+    tracker_count,
   } = artistData
 
   return (
     <aside className={styles.artistContainer}>
-      <img src={images[0]?.url} />
+      <img src={image_url} />
       <div className={styles.info}>
         <div>
           <h2>{name}</h2>
           <p>
-            Seguidores {abbreviate(followers.total)}
+            Seguidores {abbreviate(tracker_count)}
           </p>
-          <p>{genres.join(', ')}</p>
         </div>
       </div>
     </aside>

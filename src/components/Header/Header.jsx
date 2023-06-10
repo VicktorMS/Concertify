@@ -4,11 +4,13 @@ import styles from "./Header.module.css";
 import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
 import FAQButton from "/src/components/FAQButton/FAQButton";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import { useNavigate } from "react-router-dom";
 
 function Header({ userSearchData }) {
 
   const [userSearch, setUserSearch] = useState('')
 
+  let navigate  = useNavigate();
 
   const handleOnChangeSearchBar = (event) => {
     setUserSearch(event.target.value)
@@ -17,6 +19,8 @@ function Header({ userSearchData }) {
   const handleOnClickSearch = (event) => {
     event.preventDefault()
     userSearchData(userSearch)
+    navigate(`/home/artist/${userSearch}`)
+    
   }
 
   return (

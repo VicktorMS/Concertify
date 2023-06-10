@@ -3,24 +3,12 @@ import styles from "./ArtistDetails.module.css";
 import { useParams } from "react-router-dom";
 import { useFetchSpotify } from "/src/hooks/useFetchSpotify.js";
 import { useFetchBandsInTown } from "/src/hooks/useFetchBandsInTown.js";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import ArtistInfo from "/src/components/ArtistInfo/ArtistInfo";
 import ConcertCard from "/src/components/ConcertCard/ConcertCard";
 
-function ArtistDetails() {
-  // const [artistData, setArtistData] = useState([null]);
+function ArtistDetails( { artistsSearchData } ) {
   const params = useParams();
   const paramsToArray = params["*"].split("/");
-
-  // Requisição Spotify da informação do artista com o parâmetro
-  const {
-    data: artistData,
-    error: artistError,
-    isFetching: isFetchingArtist,
-  } = useFetchSpotify(
-    `https://api.spotify.com/v1/artists/${paramsToArray[0]} `,
-    "GET"
-  );
 
   // Requisição dos shows do artista com o parâmetro nome
   const {
@@ -29,7 +17,12 @@ function ArtistDetails() {
     isFetching: isFetchingConcerts,
   } = useFetchBandsInTown(`artists/${paramsToArray[1]}/events`);
 
-  console.log("concerts", !isFetchingConcerts && concertsData.length);
+  const {
+    data: artistData,
+    error: artistError,
+    isFetching: isFetchingArtist,
+  } = useFetchBandsInTown(`artists/${paramsToArray[1]}`);
+
 
   return (
     <div className={styles.artistPage}>
@@ -47,7 +40,7 @@ function ArtistDetails() {
 
             else if (isFetchingArtist) return <p>Carregando...</p>;
             
-            else if (!isFetchingConcerts && !concertsError) {
+            else if (!isFetchingArtist && !artistError) {
 
               //API do BandsInTown manda a mensagem de erro por JSON
               if (concertsData && concertsData.errorMessage)
@@ -72,11 +65,3 @@ function ArtistDetails() {
 }
 
 export default ArtistDetails;
-
-// {isFetchingConcerts ? (
-//   <p>Carregando...</p>
-// ) : (
-//   concertsData.map((concert, index) => (
-//     <ConcertCard key={index} concertData={concert} />
-//   ))
-// )}
