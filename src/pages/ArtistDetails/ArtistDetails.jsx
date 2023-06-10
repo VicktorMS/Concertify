@@ -48,7 +48,7 @@ function ArtistDetails( { artistsSearchData } ) {
 
               else {
 
-                if (concertsData.length === 0)
+                if (concertsData.length == 0)
                   return <p>Esse artista não está fazendo shows</p>;
 
                 else
