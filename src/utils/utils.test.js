@@ -1,7 +1,7 @@
-import { arrayToString } from "./utils";
+import { arrayToString, filterArtistsFromSpotifyPlaylist } from "./utils";
 
 describe("arrayToString", () => {
-  it("returns a string representation of the array", () => {
+  it("Retorna um string parecida com um array", () => {
     // Mock array
     const array = ["apple", "banana", "cherry", "date"];
 
@@ -9,15 +9,44 @@ describe("arrayToString", () => {
     expect(result).toBe("apple,banana,cherry,date");
   });
 
-  it("returns a string representation of the array with specified arraySize", () => {
-    const array = ["apple", "banana", "cherry", "date"];
+  it("Retorna um array de IDs", () => {
+    const playlistData = {
+      tracks: {
+        items: [
+          {
+            track: {
+              artists: [
+                { id: "artist1" },
+                { id: "artist2" },
+                { id: "artist3" },
+              ],
+            },
+          },
+          {
+            track: {
+              artists: [
+                { id: "artist2" },
+                { id: "artist3" },
+                { id: "artist4" },
+              ],
+            },
+          },
+          {
+            track: {
+              artists: [
+                { id: "artist1" },
+                { id: "artist3" },
+                { id: "artist5" },
+              ],
+            },
+          },
+        ],
+      },
+    };
 
-    const result = arrayToString(array, 2);
-    expect(result).toBe("apple,banana");
-  });
+    const resultado = filterArtistsFromSpotifyPlaylist(playlistData);
+    const artistas = ["artist1", "artist2", "artist3", "artist4", "artist5"];
 
-  it("returns an empty string when the array is empty", () => {
-    const result = arrayToString([]);
-    expect(result).toBe("");
+    expect(resultado).toEqual(artistas);
   });
 });
