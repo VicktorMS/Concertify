@@ -61,7 +61,10 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <HelpOutlineIcon onClick={handleClickOpen} />
+      <HelpOutlineIcon
+        onClick={handleClickOpen}
+        style={{ cursor: "pointer" }}
+      />
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
