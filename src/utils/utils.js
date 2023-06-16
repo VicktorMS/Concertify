@@ -1,23 +1,27 @@
-import { arrayToString } from "./utils";
+export function filterArtistsFromSpotifyPlaylist(playlistData) {
+  const trackItems = playlistData?.tracks?.items;
 
-describe("arrayToString", () => {
-  test("returns a string representation of the array", () => {
-    // Mock array
-    const array = ["apple", "banana", "cherry", "date"];
+  // Create an empty array to store the artist names
+  const artistId = [];
 
-    const result = arrayToString(array);
-    expect(result).toBe("apple,banana,cherry,date");
+  // Iterate over each track item
+  trackItems.forEach((item) => {
+    // Get the artists array for each track
+    const artists = item?.track?.artists;
+
+    // Iterate over each artist in the artists array
+    artists.forEach((artist) => {
+      // Get the name of the artist and push it to the artistNames array
+      artistId.push(artist?.id);
+    });
   });
 
-  test("returns a string representation of the array with specified arraySize", () => {
-    const array = ["apple", "banana", "cherry", "date"];
+  const uniqueIds = [...new Set(artistId)];
 
-    const result = arrayToString(array, 2);
-    expect(result).toBe("apple,banana");
-  });
+  return uniqueIds;
+}
 
-  test("returns an empty string when the array is empty", () => {
-    const result = arrayToString([]);
-    expect(result).toBe("");
-  });
-});
+export function arrayToString(array, arraySize = array.length) {
+  const slicedArray = array.slice(0, arraySize);
+  return slicedArray.join(",");
+}
