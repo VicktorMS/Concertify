@@ -19,7 +19,6 @@ export default function App() {
       <MainBox>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
           <Route
             path="/*"
             element={<ArtistDetails artistsSearchData={userSearchData} />}
