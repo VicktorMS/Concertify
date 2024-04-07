@@ -1,0 +1,38 @@
+.ArtistCard{
+    min-width: 210px;
+    height: 260px;
+    padding: 7px;
+
+    background: linear-gradient(0deg,rgba(25, 25, 25, 0.812)  0%,rgb(66, 66, 66) 100%);
+
+    border-radius: 8px;
+    box-shadow: 6px 7px 4px -4px rgba(0,0,0,0.75);
+
+    transition: transform 0.3s ease;
+    will-change: transform;
+    margin: 4px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.ArtistCard:hover{
+    background-color: gray;
+    transform: scale(1.1);
+}
+
+.ArtistCard > img{
+    width: 200px;
+    height: 185px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 3px 4px 4px -4px rgba(0,0,0,0.75);
+}
+
+.info{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

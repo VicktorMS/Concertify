@@ -1,0 +1,27 @@
+
+.artistContainer{
+    height: fit-content;
+    display: flex;
+    width: 100%;
+    min-width: 150px;
+    max-width: 270px;
+    flex-direction: column;
+    gap: 15px;
+
+    background: linear-gradient(0deg,rgba(25, 25, 25, 0.812)  0%,rgb(66, 66, 66) 100%);
+    border-radius: 8px;
+    box-shadow: 6px 7px 4px -4px rgba(0,0,0,0.75);
+
+}
+
+.info{
+    padding: 0 20px 20px 20px;
+}
+
+img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}

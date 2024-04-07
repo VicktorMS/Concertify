@@ -1,0 +1,27 @@
+/* Logo Font - Gotham */
+/* @font-face {
+    src: url("/fonts/GothamMedium.ttf");
+    font-family: "Gotham";
+    font-weight: normal;
+    font-style: normal;
+} */
+
+.concertify-logo{
+    font-family: 'Gotham', sans-serif;
+    font-size: 3.5em;
+    letter-spacing: -4px;
+    color: var(--spotify-green);
+}
+.logo-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.logo-wrapper img{
+    background-color: var(--spotify-green);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 6px;
+}

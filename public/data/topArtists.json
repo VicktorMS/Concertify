@@ -1,0 +1,56 @@
+[
+    {
+       "id":"0",
+       "img":"/image/artist_default.png",
+       "name":"Michael Jackson",
+       "followers":"12.2K"
+    },
+    {
+       "id":"1",
+       "img":"/image/artist_default.png",
+       "name":"Adele",
+       "followers":"22.1M"
+    },
+    {
+       "id":"2",
+       "img":"/image/artist_default.png",
+       "name":"Beyoncé",
+       "followers":"98.5M"
+    },
+    {
+       "id":"3",
+       "img":"/image/artist_default.png",
+       "name":"Elton John",
+       "followers":"6.8M"
+    },
+    {
+       "id":"4",
+       "img":"/image/artist_default.png",
+       "name":"Madonna",
+       "followers":"14.9M"
+    },
+    {
+        "id":"5",
+        "img":"/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     },
+    {
+        "id":"6",
+        "img":"/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     },
+    {
+        "id":"7",
+        "img":"/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     },
+    {
+        "id":"8",
+        "img":"/image/artist_default.png",
+        "name":"Elton John",
+        "followers":"6.8M"
+     }
+ ]
