@@ -10,35 +10,28 @@ import GenerateCardsLoading from "../../components/GenerateCardsLoading/Generate
 
 function Home() {
   const [numberOfArtists, setNumberOfArtists] = useState(50);
+  const [stringOfArtistsIds, setStringOfArtistsIds] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
-  //Id da playlist com Top Artistas
+  // Id da playlist com Top Artistas
   const playlistId = "37i9dQZEVXbMDoHDwVN2tF";
 
-  //Requisição da Playlist de top 50 artistas
-  const {
-    data: playlistData,
-    error: playlistError,
-    isFetching: isFetchingPlaylist,
-  } = useFetchSpotify(
+  // Requisição da Playlist de top 50 artistas
+  const { data: playlistData, error: playlistError, isFetching: isFetchingPlaylist } = useFetchSpotify(
     `https://api.spotify.com/v1/playlists/${playlistId}`,
     "GET"
   );
 
-  //Transforma a requisição da Playlist em uma string com ids dos artistas
-  let stringOfArtistsIds;
-  if (playlistData && !playlistError && !isFetchingPlaylist) {
-    stringOfArtistsIds = arrayToString(
-      filterArtistsFromSpotifyPlaylist(playlistData),
-      numberOfArtists
-    );
-  }
+  useEffect(() => {
+    if (playlistData && !playlistError && !isFetchingPlaylist) {
+      const ids = arrayToString(filterArtistsFromSpotifyPlaylist(playlistData), numberOfArtists);
+      setStringOfArtistsIds(ids);
+      setIsLoading(false);
+    }
+  }, [playlistData, playlistError, isFetchingPlaylist, numberOfArtists]);
 
-  //Requisição dos artistas
-  const {
-    data: artistsData,
-    error: artistsError,
-    isFetching: isFetchingArtists,
-  } = useFetchSpotify(
+  // Requisição dos artistas
+  const { data: artistsData, error: artistsError, isFetching: isFetchingArtists } = useFetchSpotify(
     `https://api.spotify.com/v1/artists?ids=${stringOfArtistsIds}`,
     "GET"
   );
@@ -46,17 +39,15 @@ function Home() {
   return (
     <div className={styles.homeTopArtist}>
       <div className={styles.categoryTitle}>
-        <h2>Descubra novas experiencias Incríveis</h2>
+        <h2>Descubra novas experiências Incríveis</h2>
         <p>Artistas do momento</p>
       </div>
       <div className={styles.cardsNav}>
-        {artistsError && <p>Não possível foi buscar artistas </p>}
-        {artistsData && artistsData?.artists[0] ? (
-          artistsData?.artists?.map((artist, index) => (
+        {isLoading && <GenerateCardsLoading numberOfCards={numberOfArtists} />}
+        {artistsData && artistsData.artists && (
+          artistsData.artists.map((artist, index) => (
             <ArtistCard data={artist} key={index} />
           ))
-        ) : (
-          <GenerateCardsLoading numberOfCards={numberOfArtists} />
         )}
       </div>
     </div>

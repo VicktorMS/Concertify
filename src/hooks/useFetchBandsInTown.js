@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
 
-export function useFetchBandsInTown(url) {
+const BASE_URL = "https://rest.bandsintown.com/";
+
+export function useFetchBandsInTown(endpoint, apiKey = "") {
   const [data, setData] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
 
-  const BASE_URL = "https://rest.bandsintown.com/";
-  
-  // Isso não deveria estar aqui
-  const secretBandsInTown = "?app_id=b44ac6574df8cdc7291e1e543bea0a67";
-
   useEffect(() => {
-    fetch(`${BASE_URL}${url}${secretBandsInTown}`)
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => setError(error))
-      .finally(() => setIsFetching(false));
-  }, [url]);
+    const fetchData = async () => {
+      setIsFetching(true);
+      try {
+        const response = await fetch(`${BASE_URL}${endpoint}?app_id=${apiKey}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    fetchData();
+  }, [endpoint, apiKey]);
 
   return { data, error, isFetching };
 }

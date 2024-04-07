@@ -8,9 +8,10 @@ import ConcertCard from "/src/components/ConcertCard/ConcertCard";
 function ArtistDetails({ artistsSearchData }) {
   const params = useParams();
   const paramsToArray = params["*"].split("/");
+  const apiKey = import.meta.env.VITE_BANDS_IN_TOWN_API_KEY
 
-  const { data: concertsData, error: concertsError, isFetching: isFetchingConcerts } = useFetchBandsInTown(`artists/${paramsToArray[1]}/events`);
-  const { data: artistData, error: artistError, isFetching: isFetchingArtist } = useFetchBandsInTown(`artists/${paramsToArray[1]}`);
+  const { data: concertsData, error: concertsError, isFetching: isFetchingConcerts } = useFetchBandsInTown(`artists/${paramsToArray[1]}/events`, apiKey);
+  const { data: artistData, error: artistError, isFetching: isFetchingArtist } = useFetchBandsInTown(`artists/${paramsToArray[1]}`, apiKey);
 
   const renderArtistInfo = () => {
     if (isFetchingArtist) return <p>Carregando...</p>;
